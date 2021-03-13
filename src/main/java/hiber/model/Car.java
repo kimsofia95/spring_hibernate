@@ -1,5 +1,7 @@
 package hiber.model;
 
+import com.sun.org.glassfish.gmbal.ManagedObject;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +9,8 @@ import javax.persistence.*;
 public class Car {
     @Id
     @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     @Column(name = "model")
     private String model;
     @Column(name = "series")
@@ -15,13 +18,17 @@ public class Car {
     @OneToOne(mappedBy = "car")
     private User user;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Car(String model, int series) {
+        this.model = model;
+        this.series = series;
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public Car() {
+
+    }
+
+    public User getUser() {
+        return user;
     }
     
     public String getModel() {
