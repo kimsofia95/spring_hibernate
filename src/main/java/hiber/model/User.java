@@ -10,9 +10,9 @@ public class User {
    @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
-   //@OneToOne(cascade = CascadeType.ALL)
-  // @JoinColumn(name = "car_id", referencedColumnName = "id")
-   //private Car car;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "car_id", referencedColumnName = "id")
+   private Car car;
 
    @Column(name = "name")
    private String firstName;
@@ -22,8 +22,6 @@ public class User {
 
    @Column(name = "email")
    private String email;
-   @Column(name = "car_id")
-   private int car_id;
 
    public User() {}
    
@@ -33,9 +31,9 @@ public class User {
       this.email = email;
    }
 
-   //public Car getCar() {
-      //return car;
-   //}
+   public Car getCar() {
+      return car;
+   }
 
    public Long getId() {
       return id;
