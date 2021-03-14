@@ -32,17 +32,15 @@ public class UserDaoImp implements UserDao {
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> getUserByCar(Car car) {
-      int series = car.getSeries();
-      String model = car.getModel();
-      String hql = "SELECT e.id "
-              +      "FROM User e "
-              +      "LEFT OUTER JOIN Car a ON e.car = a.user "
-              +       "where (a.series = "  + series + ") "
-              +       "AND (a.model = '"  + model + "') ";
+   public List<User> getUserByCar(int series, String model) {
+      String hql = "SELECT e.user "
+              +      "FROM Car e "
+              +      "LEFT OUTER JOIN User a ON a.car = e.user "
+              +       "where (e.series = "  + series + ") "
+              +       "AND (e.model = '"  + model + "') ";
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql);
-      List results = query.getResultList();
-      return null;
+      List <User> users = query.getResultList();
+      return users;
    }
 
 }

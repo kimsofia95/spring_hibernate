@@ -18,27 +18,25 @@ public class MainApp {
       Car car = new Car("lada", 56);
       Car car1 = new Car("mersedes", 567);
       Car car4 = new Car("bmv", 5657);
-      User user = new User("User2", "Lastname244", "user2@mail.ru");
+      User user5 = new User("User2", "Lastname244", "user2@mail.ru");
       User user1 = new User("User3", "Lastname22", "user2@mail.ru");
       User user2 = new User("User4", "Lastname2ad", "user2@mail.ru");
-      user.setCar(car);
+      user5.setCar(car);
       user2.setCar(car1);
-      userService.add(user);
+      userService.add(user5);
       userService.add(user1);
       userService.add(user2);
-      List<User> list = userService.getUserByCar(car1);
-     // userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
-     // userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
+      List<User> list = userService.getUserByCar(car1.getSeries(), car1.getModel());
 
 
       List<User> users = userService.listUsers();
-      //for (User user : users) {
+      for (User user : list) {
          System.out.println("Id = "+user.getId());
          System.out.println("First Name = "+user.getFirstName());
          System.out.println("Last Name = "+user.getLastName());
          System.out.println("Email = "+user.getEmail());
          System.out.println();
-     // }
+      }
 
       context.close();
    }
