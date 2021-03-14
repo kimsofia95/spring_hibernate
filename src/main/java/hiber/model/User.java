@@ -7,8 +7,12 @@ import javax.persistence.*;
 public class User {
 
    @Id
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "car_id", referencedColumnName = "id")
+   private Car car;
 
    @Column(name = "name")
    private String firstName;
@@ -25,6 +29,13 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+   }
+
+   public Car getCar() {
+      return car;
+   }
+   public void setCar(Car car) {
+      this.car = car;
    }
 
    public Long getId() {
